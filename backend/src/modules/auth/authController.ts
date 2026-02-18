@@ -121,3 +121,23 @@ export const logout = async (req: Request, res: Response) => {
     clearAuthCookies(res);
     res.json({ message: "Logged out" });
 };
+
+export const getMe = async (req: Request, res: Response) => {
+    if (!req.userId) {
+  return res.status(401).json({ message: "Unauthorized" });
+   }
+
+    const user = await prisma.user.findUnique({
+        where: { id: req.userId },
+        select: {
+            id: true,
+            name: true,
+            email: true,
+            createdAt: true
+        }
+    });
+
+    if(!user) return res.status(401).json({ message: "Unathorized" });
+
+    res.json(user);
+};
