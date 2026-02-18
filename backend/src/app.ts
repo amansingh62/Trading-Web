@@ -12,6 +12,6 @@ app.use(cors({
 app.use(express.json());
 app.use(cookieParser());
 
-app.use("/api", authRoutes);
+app.use("/api/auth", authRoutes);
 
 export default app;
