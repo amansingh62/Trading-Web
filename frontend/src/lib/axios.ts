@@ -17,7 +17,7 @@ api.interceptors.response.use((response) => response, async(error) => {
             });
 
             return api(originalRequest);
-        } catch(err) {
+        } catch {
             window.location.href = "/login";
         }
     }
