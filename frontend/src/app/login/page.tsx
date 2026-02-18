@@ -1,5 +1,6 @@
 "use client";
 
+import { useAuth } from "@/src/context/AuthContext";
 import api from "@/src/lib/axios";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -9,12 +10,14 @@ export default function LoginPage() {
     
     const [ email, setEmail ] = useState("");
     const [ password, setPassword ] = useState("");
+    const { login } = useAuth();
 
     const submit = async (e: React.FormEvent<HTMLFormElement>) => {
        e.preventDefault();
 
        try {
         await api.post("/auth/login", { email, password });
+        await login();
         router.push("/dashboard");
        } catch {
         alert("Invalid Credentials");
