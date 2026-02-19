@@ -9,6 +9,9 @@ pub.on("connect", () => {
     console.log("Redis pub connected" );
 });
 
-sub.on("connnect", () => {
+sub.on("connect", () => {
     console.log("Redis sub connected" );
 });
+
+pub.ping().then(console.log);
+

@@ -2,11 +2,12 @@ import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import authRoutes from "../src/modules/auth/authRoutes.js";
+import { env } from "../src/config/env.js";
 
 const app = express();
 
 app.use(cors({
-    origin: true,
+    origin: env.FRONTEND!,
     credentials: true
 }));
 app.use(express.json());
